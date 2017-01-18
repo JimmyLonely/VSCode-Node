@@ -1,33 +1,15 @@
-var util = require("util");
+var util = require('util');
 
-function Base(){
+function Person(){
     var self = this;
-    self.name='base';
-    self.base = 1993;
+    self.name = 'jimmy';
     self.sayHello = function(){
-        console.log(self.name + ' hello!');
+        console.log(self.name + ' Hello!');
     }
 }
 
-Base.prototype.proShowName = function(){
-    var self = this;
-    console.log(self.name);
-};
+var objPerson = new Person();
 
-function Sub(){
-    var self = this;
-    self.name='sub';
-}
+console.log(util.inspect(objPerson, true, 1));
 
-util.inherits(Sub, Base);
-
-var objBase = new Base();
-objBase.sayHello();
-console.dir(objBase);
-
-var objSub = new Sub();
-
-//objSub.sayHello();        //util.inherits inherits propotype attribute and function, only!
-
-objSub.proShowName();
-console.dir(objSub);
+console.log(util.inspect(objPerson, true, null, true));
