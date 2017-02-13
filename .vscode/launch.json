@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/runoob/util.js",
+            "program": "${workspaceRoot}/runoob/fs.js",
             
             "cwd": "${workspaceRoot}"
         },
