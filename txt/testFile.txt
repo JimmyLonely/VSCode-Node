@@ -1,1 +1,1 @@
-This file is for test!
+Write new chars to file!
