@@ -1,13 +1,33 @@
 var http = require('http');
-var url = require('url');
+var querystring = require('querystring');
+
+var postHTML = 
+  '<html><head><meta charset="utf-8"><title>Runoob Node.js 实例</title></head>' +
+  '<body>' +
+  '<form method="post">' +
+  'name： <input name="name"><br>' +
+  'age： <input name="age"><br>' +
+  '<input type="submit">' +
+  '</form>' +
+  '</body></html>';
 
 http.createServer(function(request, response){
-    response.writeHead(200, {'Content-Type': 'text/plain'});
+    var body = '';
+    request.on('data', function(chunk){
+        body += chunk;
+    });
 
-    var urlParameters = url.parse(request.url, true);
-    var queryParameters = urlParameters.query;
-    response.write('name: ' + queryParameters.name);
-    response.write('\n');
-    response.write('age: ' + queryParameters.age);
-    response.end();
+    request.on('end', function(){
+        body = querystring.parse(body);
+        response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+
+        if(body.name && body.age){
+            response.write('name: ' + body.name);
+            response.write('\n');
+            response.write('age: ' + body.age);
+        } else{
+            response.write(postHTML);
+        }
+        response.end(); 
+    });
 }).listen(6001);
