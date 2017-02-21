@@ -1,9 +1,7 @@
 var http = require('http');
 
 var options = {
-    host: '192.168.232.161',
-    port: '6001',
-    path: '/index.html'
+    host: 'www.baidu.com'
 };
 
 var callback = function(response){

@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/runoob/server.js",
+            "program": "${workspaceRoot}/express_demo/express_demo.js",
             
             "cwd": "${workspaceRoot}"
         },
