@@ -1,30 +1,41 @@
 var express = require('express');
-
 var app = express();
 
-app.get('/',function(request,response){
-    response.send('Home page [GET].');
+var bodyParser = require('body-parser')
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+
+app.use(express.static('public'));
+
+app.get('/index.html', function(req, res){
+    res.sendFile(__dirname + '/' + 'index.html');
 });
 
-app.post('/', function(request,response){
-    response.send('Home page [POST].');
-})
+app.get('/process_get', function(req, res){
 
-app.get('/list_user', function(request,response){
-    response.send('List_user.');
-})
+    var response = {
+        firstName: req.query.first_name,
+        lastName: req.query.last_name
+    }
 
-app.get('/del_user', function(request,response){
-    response.send('Delete user.');
-})
+    res.send(JSON.stringify(response));
 
-app.get('/*jimmy*', function(request, response){
-    response.send('jimmy\' router');
+});
+
+app.post('/process_post',urlencodedParser, function(req, res){
+    var response = {
+        firstName: req.body.first_name,
+        lastName: req.body.last_name
+    }
+
+    res.send(JSON.stringify(response));
+
 });
 
 var server = app.listen(6001, function(){
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('URL addess: http://%s:%s', host,port);
-});
+    console.log('Server running at http://%s:%s', host, port);
+})
