@@ -1,10 +1,15 @@
 <html>
+<head>
+    <title>Upload file</title>
+</head>
 
 <body>
-    <form action="http://127.0.0.1:6001/process_post" method="POST">
-        First Name: <input type="text" name="first_name"> <br> Last Name: <input type="text" name="last_name">
-        <input type="submit" value="Submit">
+    <h3>Upload</h3>
+    Please select a file<br />
+    <form action="/file_upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" size="50" />
+        <br />
+        <input type="submit" value="Upload" />
     </form>
 </body>
-
-</html>
+</html
