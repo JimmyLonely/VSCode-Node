@@ -61,6 +61,13 @@ app.post('/file_upload', function(req, res){
     })
 });
 
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+app.get('/process_cookie', function(req, res){
+    console.log(req.cookies);
+});
+
 var server = app.listen(6001, function(){
     var host = server.address().address;
     var port = server.address().port;
